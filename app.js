@@ -15,8 +15,13 @@ app.config(['$routeProvider', function($routeProvider) {
         controller: 'ViewEmployeeController'
     }).
 
+    when('/', {
+        templateUrl: 'index-2.html',
+        controller: 'appController'
+    }).
+
     otherwise({
-        redirectTo: '/addEmployee'
+        redirectTo: '/'
     });
 }]);
 

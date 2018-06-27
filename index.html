@@ -1,39 +1,97 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <title>Angular</title>
-    <link rel="stylesheet" href="">
-    <script src="./lib/angular.min.js"></script>
-    <style>
-        body{
 
-            margin: 25px 50px;
-            background-color: lightblue;
+<head>
+    <title>Angular JS Views</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 25%;
+            background-color: #f1f1f1;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+        }
+
+        li a {
+            display: block;
+            color: #000;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+
+        li a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #555;
+            color: white;
         }
     </style>
 
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
 </head>
-<body ng-app="firstApp">
 
-<div ng-controller="appController"class="container">
+<body>
 
-        Favorite Ride: <small><input ng-model="name"></small>
-        <h4>What fascinates you about: {{ name | uppercase }}</h4>
+<ul>
+    <li><a href = "#/" class="active">Index</a></li>
+    <li><a href = "#addEmployee">Add Employee</a></li>
+    <li><a href = "#viewEmployees">View Employees</a></li>
+</ul>
+<div style="margin-left:25%;padding:1px 16px;height:1000px;">
+    <!--Bootstrap-->
+    <div ng-app = "firstApp">
 
-    <hr>
-    <div data-ng-init="quantity=1;price=5">
+        <!--Views-->
+        <div ng-view></div>
 
-        <h2>Price Calculator</h2>
+        <script type = "text/ng-template" id = "addEmployee.html">
+            <h2> Add Employee </h2>
+                <!--Expressions-->
+                {{ message }}
+        </script>
 
-        Quantity:   <input type="number" ng-model="quantity">
-        Price:      <input type="number" ng-model="price">
+        <script type = "text/ng-template" id = "viewEmployees.html">
+            <h2> View Employee </h2>
+                <!--Expressions-->
+                {{message}}
+        </script>
 
-        <p><b>Total in dollar:</b> {{quantity * price}}</p>
+        <script type = "text/ng-template" id = "index-2.html">
+            <div class="container">
 
+                Favorite Ride: <small><input ng-model="name"></small>
+                <h4>What fascinates you about: {{ name | uppercase }}</h4>
+
+                <hr>
+                <div data-ng-init="quantity=1;price=5">
+
+                    <h2>Price Calculator</h2>
+
+                    Quantity:   <input type="number" ng-model="quantity">
+                    Price:      <input type="number" ng-model="price">
+
+                    <p><b>Total in dollar:</b> {{quantity * price}}</p>
+
+                </div>
+                <hr>
+
+            </div>
+        </script>
     </div>
-    <hr>
 
 </div>
+
 <script src="app.js"></script>
+
 </body>
 </html>
