@@ -47,51 +47,28 @@
     <li><a href = "#viewEmployees">View Employees</a></li>
 </ul>
 <div style="margin-left:25%;padding:1px 16px;height:1000px;">
-    <div ng-app = "angularApp">
+    <!--Bootstrap-->
+    <div ng-app = "firstApp">
+
+        <!--Views-->
         <div ng-view></div>
 
         <script type = "text/ng-template" id = "addEmployee.html">
             <h2> Add Employee </h2>
-{{ message }}
+                <!--Expressions-->
+                {{ message }}
         </script>
 
         <script type = "text/ng-template" id = "viewEmployees.html">
             <h2> View Employee </h2>
-{{message}}
+                <!--Expressions-->
+                {{message}}
         </script>
     </div>
 
 </div>
 
-<script>
-    var angularApp = angular.module("angularApp", ['ngRoute']);
-    angularApp.config(['$routeProvider', function($routeProvider) {
-        $routeProvider.
-
-        when('/addEmployee', {
-            templateUrl: 'addEmployee.html',
-            controller: 'AddEmployeeController'
-        }).
-
-        when('/viewEmployee', {
-            templateUrl: 'viewEmployees.html',
-            controller: 'ViewEmployeeController'
-        }).
-
-        otherwise({
-            redirectTo: '/addEmployee'
-        });
-    }]);
-
-    angularApp.controller('AddEmployeeController', function($scope) {
-        $scope.message = "This page will be used to display add student form";
-    });
-
-    angularApp.controller('ViewEmployeeController', function($scope) {
-        $scope.message = "This page will be used to display all the students";
-    });
-
-</script>
+<script src="app.js"></script>
 
 </body>
 </html>
