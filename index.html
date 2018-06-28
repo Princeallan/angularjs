@@ -5,6 +5,7 @@
     <style>
         body {
             margin: 0;
+            background: lightgrey;
         }
 
         ul {
@@ -46,6 +47,7 @@
     <li><a href = "#/" class="active">Index</a></li>
     <li><a href = "#addEmployee">Add Employee</a></li>
     <li><a href = "#viewEmployees">View Employees</a></li>
+    <li><a href = "#filter">Filters</a></li>
 </ul>
 <div style="margin-left:25%;padding:1px 16px;height:1000px;">
     <!--Bootstrap-->
@@ -63,16 +65,28 @@
         <script type = "text/ng-template" id = "viewEmployees.html">
             <h2> View Employee </h2>
                 <!--Expressions-->
-                {{message}}
+            <input ng-model="search"><br>
+
+            <div ng-repeat="name in employees | employeeFilter:search">
+                <li> {{ name }} </li>
+            </div>
+            <input ng-model="employee">
+            <button ng-click="addEmployee()">add employee</button>
+
+            <!--<li ng-repeat="employee in viewEmployee.employees | filter:ViewEmployee.empFilter">-->
+                <!--{{ employee }} </li>-->
+
         </script>
 
         <script type = "text/ng-template" id = "index-2.html">
             <div class="container">
+                <hr>
 
                 Favorite Ride: <small><input ng-model="name"></small>
                 <h4>What fascinates you about: {{ name | uppercase }}</h4>
 
                 <hr>
+
                 <div data-ng-init="quantity=1;price=5">
 
                     <h2>Price Calculator</h2>
@@ -87,6 +101,15 @@
 
             </div>
         </script>
+        <script type = "text/ng-template" id = "filter.html">
+            <div class="container">
+
+
+
+            </div>
+        </script>
+
+
     </div>
 
 </div>

@@ -16,6 +16,10 @@ app.config(['$routeProvider', function($routeProvider) {
     }).
 
     when('/', {
+        templateUrl: 'filter.html',
+        controller: 'appController'
+    }).
+    when('/', {
         templateUrl: 'index-2.html',
         controller: 'appController'
     }).
@@ -35,7 +39,32 @@ app.controller('AddEmployeeController', function($scope) {
 });
 
 app.controller('ViewEmployeeController', function($scope) {
-    $scope.message = "This page will be used to display all the students";
-});
 
-//Custom filters
+    $scope.search="";
+    $scope.employee="";
+    $scope.employees = [
+        'Emmanuel',
+        'Michael',
+        'Johnson',
+        'kelvin',
+        'William'
+    ];
+    $scope.addEmployee = function () {
+        $scope.employees.push($scope.employee);
+        $scope.employee="";
+    }
+
+});
+app.filter("employeeFilter",function () {
+    return function (employeeList, searchTerm) {
+        if(searchTerm==null||searchTerm=="undefined"){
+            return employeeList;
+        }
+        else{
+
+            return employeeList.filter(employee=>employee.toLowerCase().indexOf(searchTerm.toLowerCase())!==-1);
+        }
+
+    }
+
+})
